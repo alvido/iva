@@ -1,0 +1,1035 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+  */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+  */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+  */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+  */
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+  */
+p {
+  --paragraphMarginBottom: 16px;
+  margin-block: 0;
+}
+p:last-of-type {
+  margin: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+  */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями
+  */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+  */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+  Пригодится в большинстве ситуаций
+  (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  height: 100%;
+  /**
+  Плавный скролл
+  */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+  Пригодится в большинстве ситуаций
+  (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  min-height: 100%;
+  /**
+  Унифицированный интерлиньяж
+  */
+  line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  */
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+  */
+svg * {
+  -webkit-transition-property: fill, stroke;
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+  */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    -webkit-transition-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-thin-webfont.woff"), url("../fonts/montserrat-thin-webfont.woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-extralight-webfont.woff"), url("../fonts/montserrat-extralight-webfont.woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-light-webfont.woff"), url("../fonts/montserrat-light-webfont.woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-regular-webfont.woff"), url("../fonts/montserrat-regular-webfont.woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-medium-webfont.woff"), url("../fonts/montserrat-medium-webfont.woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-semibold-webfont.woff"), url("../fonts/montserrat-semibold-webfont.woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-bold-webfont.woff"), url("../fonts/montserrat-bold-webfont.woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-extrabold-webfont.woff"), url("../fonts/montserrat-extrabold-webfont.woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-black-webfont.woff"), url("../fonts/montserrat-black-webfont.woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+:root {
+  /*colors*/
+  --color-black: #252323;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  --color-shadow: rgba(22, 28, 45, 0.05);
+  /*colors*/
+  /*border*/
+  --border: 2px solid var(--color-black);
+  --border-radius: 16px;
+  --border-radius-small: 10px;
+  --border-radius-large: 30px;
+  /*border*/
+  /*body*/
+  --font-family-base: "Montserat", serif;
+  --container-width: 1280px;
+  --container-padding-x: clamp(1rem, -0.333rem + 5.93vw, 5rem);
+  --section-padding-y: 80px;
+  /*body*/
+  /*button*/
+  --input-height: 55px;
+  --button-height: 46px;
+  --icon-button-height: 30px;
+  --transition-duration: 0.3s;
+  /*button*/
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  -webkit-clip-path: inset(100%) !important;
+          clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: clamp(16px, 1.25vw, 16px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: var(--color-black);
+  background: var(--color-white);
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  line-height: 1.25;
+}
+body.lock {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+main {
+  overflow: hidden;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px;
+}
+
+aside {
+  max-width: 300px;
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  -webkit-transition-duration: var(--transition-duration);
+          transition-duration: var(--transition-duration);
+}
+
+a {
+  color: inherit;
+}
+a, a:hover {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(30px, 3.28125vw, 42px);
+  font-weight: 400;
+}
+
+h2 {
+  font-size: clamp(24px, 2.34375vw, 30px);
+  font-weight: 400;
+}
+
+h3 {
+  font-size: clamp(20px, 1.875vw, 24px);
+  font-weight: 500;
+}
+
+h4 {
+  font-size: clamp(20px, 1.25vw, 16px);
+}
+
+h5 {
+  font-size: clamp(14px, 1.09375vw, 14px);
+}
+
+.large {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.small {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.wrapper {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 20px;
+}
+
+.title {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@-webkit-keyframes backAndForth {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 10px 0;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes backAndForth {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 10px 0;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+@-webkit-keyframes rorateElements {
+  0% {
+    rotate: 0;
+  }
+  25% {
+    rotate: 15deg;
+  }
+  50% {
+    rotate: 0;
+  }
+  75% {
+    rotate: -15deg;
+  }
+  100% {
+    rotate: 0;
+  }
+}
+@keyframes rorateElements {
+  0% {
+    rotate: 0;
+  }
+  25% {
+    rotate: 15deg;
+  }
+  50% {
+    rotate: 0;
+  }
+  75% {
+    rotate: -15deg;
+  }
+  100% {
+    rotate: 0;
+  }
+}
+.button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  min-width: 140px;
+  height: var(--button-height);
+  text-transform: capitalize;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 8px;
+  padding: 0 20px;
+  font-size: clamp(16px, 1.25vw, 16px);
+  font-weight: 500;
+  border-radius: var(--border-radius-large);
+  color: var(--color-white);
+  background: var(--color-black);
+  border: 2px solid var(--color-black);
+}
+@media (hover: hover) {
+  .button:hover {
+    color: var(--color-blue);
+    background: var(--color-transparent);
+  }
+}
+@media (hover: none) {
+  .button:active {
+    color: var(--color-blue);
+    background: var(--color-transparent);
+  }
+}
+.button--white {
+  min-width: 163px;
+  color: var(--color-black);
+  background: var(--color-white);
+  border-color: var(--color-white);
+}
+@media (hover: hover) {
+  .button--white:hover {
+    color: var(--color-white);
+    background: transparent;
+  }
+}
+@media (hover: none) {
+  .button--white:active {
+    color: var(--color-white);
+    background: transparent;
+  }
+}
+.button--transparent {
+  min-width: 163px;
+  font-size: 16px;
+  color: var(--color-white);
+  background: var(--color-transparent);
+  border: 2px solid var(--color-white);
+}
+@media (hover: hover) {
+  .button--transparent:hover {
+    color: var(--color-black);
+    background: var(--color-white);
+  }
+}
+@media (hover: none) {
+  .button--transparent:active {
+    color: var(--color-black);
+    background: var(--color-white);
+  }
+}
+
+.burger {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  aspect-ratio: 1;
+  position: relative;
+  z-index: 2;
+}
+.burger::before, .burger::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: black;
+  border-radius: 3px;
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.burger::before {
+  top: 13px;
+}
+.burger::after {
+  bottom: 13px;
+}
+.burger span {
+  font-size: 0;
+}
+.burger.burger--active::before, .burger.burger--active::after {
+  width: 90%;
+  top: 50%;
+  bottom: auto;
+  translate: -50% -50%;
+}
+.burger.burger--active::before {
+  rotate: 45deg;
+}
+.burger.burger--active::after {
+  rotate: -45deg;
+}
+
+.form {
+  /* Стилизованный radio button */
+  /* При отмеченном radio button изменить цвет и показать "галочку" */
+  /* Стилизованный чекбокс */
+  /* При отмеченном чекбоксе изменить цвет и показать "галочку" */
+}
+.form label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 16px;
+  font-size: clamp(1rem, 0.186rem + 1.69vw, 1.5rem);
+  font-weight: 700;
+}
+.form input,
+.form select {
+  margin: 0;
+  font-size: clamp(16px, 1.5625vw, 20px);
+  font-weight: 500;
+  outline: none;
+  width: 100%;
+  height: 64px;
+  padding: 16px 24px;
+  color: var(--color-black);
+  border-radius: 40px;
+  border: 1px solid rgba(58, 95, 111, 0.16);
+}
+.form input::-webkit-input-placeholder, .form select::-webkit-input-placeholder {
+  color: #3A5F6F;
+}
+.form input::-moz-placeholder, .form select::-moz-placeholder {
+  color: #3A5F6F;
+}
+.form input:-ms-input-placeholder, .form select:-ms-input-placeholder {
+  color: #3A5F6F;
+}
+.form input::-ms-input-placeholder, .form select::-ms-input-placeholder {
+  color: #3A5F6F;
+}
+.form input::placeholder,
+.form select::placeholder {
+  color: #3A5F6F;
+}
+@media (max-width: 767px) {
+  .form input,
+  .form select {
+    height: 56px;
+  }
+}
+.form input:focus-visible,
+.form select:focus-visible {
+  border: 1px solid var(--color-cyan);
+}
+.form textarea {
+  margin: 0;
+  font-size: clamp(16px, 1.5625vw, 20px);
+  font-weight: 500;
+  outline: none;
+  width: 100%;
+  min-height: 120px;
+  padding: 16px 24px;
+  color: var(--color-black);
+  border-radius: 24px;
+  border: 1px solid rgba(58, 95, 111, 0.16);
+  resize: none;
+}
+.form textarea:focus-visible {
+  border: 1px solid var(--color-cyan);
+}
+.form .custom-radio {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  cursor: pointer;
+  /* Скрыть стандартный radio button */
+  /* Стиль для видимого элемента radio button */
+}
+.form .custom-radio input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.form .custom-radio .radiomark {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-color: #F9FAFB;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid rgb(175, 186, 202);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  /* Отображение "галочки" внутри radio button */
+}
+.form .custom-radio .radiomark::after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: url(/assets/images/icon/check.svg) no-repeat center;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.form .custom-radio input[type=radio]:checked + .radiomark {
+  background-color: var(--color-cyan);
+  border: 1px solid var(--color-cyan);
+}
+.form .custom-radio input[type=radio]:checked + .radiomark::after {
+  opacity: 1;
+}
+.form .custom-checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 16px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  /* Скрыть стандартный чекбокс */
+  /* Стиль для видимого элемента чекбокса */
+}
+.form .custom-checkbox input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.form .custom-checkbox .checkmark {
+  display: inline-block;
+  width: 48px;
+  height: 28px;
+  background-color: var(--color-black);
+  border-radius: 14px;
+  position: relative;
+  cursor: pointer;
+  /* Отображение "галочки" внутри чекбокса */
+}
+.form .custom-checkbox .checkmark::after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 2px;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-white);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.form .custom-checkbox input[type=checkbox]:checked + .checkmark {
+  background-color: var(--color-black);
+}
+.form .custom-checkbox input[type=checkbox]:checked + .checkmark::after {
+  left: auto;
+  right: 2px;
+}
+
+.select2 {
+  width: 100% !important;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: var(--color-black);
+}
+
+.select2-container--default .select2-selection--single {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  font-size: clamp(16px, 1.5625vw, 20px);
+  font-weight: 500;
+  outline: none;
+  width: 100%;
+  height: 64px;
+  padding: 16px 24px;
+  color: var(--color-black);
+  border-radius: 40px;
+  border: 1px solid rgba(58, 95, 111, 0.16);
+}
+@media (max-width: 767px) {
+  .select2-container--default .select2-selection--single {
+    height: 56px;
+  }
+}
+.select2-container--default .select2-selection--single:focus-visible {
+  border: 1px solid var(--color-black);
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding: 0;
+  margin: 0;
+  color: var(--color-black);
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  right: 24px;
+  translate: 0 -50%;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  position: static;
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: url(../images/icon/ArrowDown2.svg) no-repeat center;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+  rotate: 180deg;
+}
+
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+  border-color: var(--color-black);
+}
+
+.swiper-pagination {
+  position: static;
+  width: auto !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+}
+.swiper-pagination-bullet-active {
+  margin: 0;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  aspect-ratio: 1;
+  margin: 0 !important;
+  border-radius: 5px;
+}
+.swiper-pagination-bullet-active {
+  width: 24px;
+  background-color: var(--color-black);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: static;
+  margin: 0;
+  width: 48px;
+  height: 48px;
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: url(../images/icon/nav.svg) no-repeat center;
+}
+
+.swiper-button-prev::after {
+  rotate: 180deg;
+}
+
+.swiper__navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.swiper__navigation-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header {
+  position: relative;
+  padding: 20px 0;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+.header.fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  background: var(--color-white);
+}
+
+@media (hover: hover) {
+  .logo:hover {
+    scale: 1.1;
+  }
+}
+@media (hover: none) {
+  .logo:active {
+    scale: 1.1;
+  }
+}
+.logo img {
+  max-width: 90px;
+}
+@media (max-width: 767px) {
+  .logo img {
+    max-width: 70px;
+  }
+}
+
+.navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 50px;
+}
+@media (max-width: 767px) {
+  .navigation {
+    padding: 40px 24px;
+    position: absolute;
+    top: -1000%;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: var(--color-white);
+  }
+  .navigation.navigation--active {
+    top: 100%;
+    opacity: 1;
+  }
+}
+.navigation__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 60px;
+}
+.navigation__list li a {
+  position: relative;
+  display: block;
+  font-weight: 500;
+}
+.navigation__list li a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  translate: -50% 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-black);
+  -webkit-transition-duration: var(--transition-duration);
+          transition-duration: var(--transition-duration);
+}
+@media (hover: hover) {
+  .navigation__list li a:hover {
+    color: var(--color-black);
+  }
+  .navigation__list li a:hover::after {
+    width: 100%;
+  }
+}
+@media (hover: none) {
+  .navigation__list li a:active {
+    color: var(--color-black);
+  }
+  .navigation__list li a:active::after {
+    width: 100%;
+  }
+}
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */

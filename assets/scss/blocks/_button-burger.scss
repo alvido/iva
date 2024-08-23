@@ -1,0 +1,53 @@
+.burger {
+    @include reset-button;
+    @include squere(40px);
+    position: relative;
+    z-index: 2;
+
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 3px;
+        background: black;
+        border-radius: 3px;
+
+        position: absolute;
+        left: 50%;
+        translate: -50% 0;
+        transition: all .3s ease;
+    }
+
+    &::before {
+        top: 13px;
+    }
+
+    &::after {
+        bottom: 13px;
+    }
+
+    & span {
+        font-size: 0;
+    }
+
+    &.burger--active {
+
+        &::before,
+        &::after {
+            width: 90%;
+            top: 50%;
+            bottom: auto;
+            translate: -50% -50%;
+        }
+
+        &::before {
+            rotate: 45deg;
+        }
+
+        &::after {
+            rotate: -45deg;
+
+        }
+    }
+}
