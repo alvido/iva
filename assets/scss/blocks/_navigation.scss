@@ -1,6 +1,4 @@
 .navigation {
-    @include flex-center;
-    gap: 50px;
 
     @include mobile {
         padding: 40px 24px;
@@ -28,9 +26,10 @@
             & a {
                 position: relative;
                 display: block;
-                font-weight: 500;
+                font-size: 16px;
+                font-weight: 800;
 
-                &::after{
+                &::after {
                     content: '';
                     position: absolute;
                     left: 50%;
@@ -43,10 +42,11 @@
                 }
 
                 @include hover {
-                    color: var(--color-black);
+                    color: var(--color-blue);
 
                     &::after {
                         width: 100%;
+                        background: var(--color-blue);
                     }
                 }
             }

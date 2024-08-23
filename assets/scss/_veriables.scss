@@ -5,20 +5,22 @@ $container: 1280;
     /*colors*/
     --color-black: #252323;
     --color-white: #ffffff;
+    --color-blue: #2D5AFD;
+    --color-gray: #D8E2ED;
 
     --color-transparent: transparent;
     --color-shadow: rgba(22, 28, 45, 0.05);
     /*colors*/
 
     /*border*/
-    --border: 2px solid var(--color-black);
+    --border: 2px solid var(--color-gray);
     --border-radius: 16px;
     --border-radius-small: 10px;
-    --border-radius-large: 30px;
+    --border-radius-large: 24px;
     /*border*/
 
     /*body*/
-    --font-family-base: "Montserat", serif;
+    --font-family-base: "Poppins", sans-serif;
 
     --container-width: #{$container}px;
     --container-padding-x: clamp(1rem, -0.333rem + 5.93vw, 5rem);
@@ -27,7 +29,7 @@ $container: 1280;
     /*body*/
 
     /*button*/
-    --input-height: 55px;
+    --input-height: 64px;
     --button-height: 46px;
     --icon-button-height: 30px;
 

@@ -1,4 +1,5 @@
 .burger {
+    display: none;
     @include reset-button;
     @include squere(40px);
     position: relative;

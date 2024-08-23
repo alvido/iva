@@ -1,3 +1,49 @@
 .hero {
 
+    & .content {
+        width: 42%;
+
+        @include desktop {
+            width: 46%;
+        }
+
+        @include laptop {
+            width: 100%;
+        }
+    }
+
+    & .wrapper {
+
+        @include laptop {
+            flex-direction: column;
+        }
+    }
+
+    & .calculator {
+        width: 52%;
+        padding: clamp(1.5rem, 1.167rem + 1.48vw, 2.5rem) clamp(1rem, 0.5rem + 2.22vw, 2.5rem);
+        background: url(../images/calculator-bg.png) no-repeat center;
+        background-size: cover;
+        border-radius: var(--border-radius-large);
+
+        @include desktop {
+            width: 50%;
+        }
+
+        @include laptop {
+            width: 100%;
+        }
+
+        & label:where([for="rate"]) {
+            position: relative;
+
+            &::after {
+                content: '%';
+                position: absolute;
+                bottom: 17px;
+                right: 40px;
+                color: var(--color-black);
+            }
+        }
+    }
 }

@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    @include fluid-text(16, 16);
+    @include fluid-text(20, 16);
     display: flex;
     flex-direction: column;
 
@@ -12,7 +12,7 @@ body {
 
     font-family: var(--font-family-base);
     font-weight: 400;
-    line-height: 1.25;
+    line-height: 1.5;
 
     &.lock {
         max-height: 100vh;
@@ -24,11 +24,20 @@ main {
     overflow: hidden;
     flex: 1;
     display: flex;
-    padding: 20px;
+    justify-content: center;
+    padding: 0 16px;
+    gap: 40px 32px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.page {
+    flex: 0 1 auto;
 }
 
 aside {
     max-width: 300px;
+    flex: 0 0 auto;
 }
 
 a,
@@ -53,13 +62,18 @@ h6 {
 }
 
 h1 {
-    @include fluid-text(42, 30);
-    font-weight: 400
+    @include fluid-text(56, 40);
+    font-weight: 900;
+    text-transform: uppercase;
+
+    & span {
+        color: var(--color-blue);
+    }
 }
 
 h2 {
-    @include fluid-text(30, 24);
-    font-weight: 400
+    @include fluid-text(40, 28);
+    font-weight: 700
 }
 
 h3 {
@@ -88,9 +102,8 @@ h5 {
 
 .wrapper {
     position: relative;
-    @include flex-center;
-    justify-content: space-between;
-    gap: 20px;
+    @include flex-start;
+    gap: 32px 20px;
 }
 
 .title {
