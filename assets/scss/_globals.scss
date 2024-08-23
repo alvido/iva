@@ -36,8 +36,14 @@ main {
 }
 
 aside {
+    @include flex-center;
+    width: 100%;
     max-width: 300px;
     flex: 0 0 auto;
+
+    @include laptop {
+        max-width: none;
+    }
 }
 
 a,
