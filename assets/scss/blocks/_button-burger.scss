@@ -5,6 +5,10 @@
     position: relative;
     z-index: 2;
 
+    @include mobile {
+        @include flex-center;
+    }
+
     &::before,
     &::after {
         content: '';
@@ -21,15 +25,20 @@
     }
 
     &::before {
-        top: 13px;
+        top: 10px;
     }
 
     &::after {
-        bottom: 13px;
+        bottom: 10px;
     }
 
     & span {
         font-size: 0;
+        display: block;
+        width: 30px;
+        height: 3px;
+        background: black;
+        border-radius: 3px;
     }
 
     &.burger--active {
@@ -48,7 +57,10 @@
 
         &::after {
             rotate: -45deg;
+        }
 
+        & span {
+            opacity: 0;
         }
     }
 }

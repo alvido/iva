@@ -1,4 +1,4 @@
-$container: 1280;
+$container: 1440;
 
 :root {
 
@@ -23,7 +23,7 @@ $container: 1280;
     --font-family-base: "Poppins", sans-serif;
 
     --container-width: #{$container}px;
-    --container-padding-x: clamp(1rem, -0.333rem + 5.93vw, 5rem);
+    --container-padding-x: clamp(1rem, -6.642rem + 11.94vw, 5rem);
 
     --section-padding-y: 80px;
     /*body*/

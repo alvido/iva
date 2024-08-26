@@ -40,116 +40,100 @@
                     </li>
                 </ul>
             </nav>
-            <button class="burger">
+            <button class="burger" id="burgerButton">
                 <span>Menu</span>
             </button>
         </div>
     </header>
 
     <main class="main">
-        <div class="page">
-            <section class="hero">
-                <div class="wrapper">
-                    <div class="content">
-                        <h1>Calcular <span>IVA</span></h1>
-                        <p>
-                            Para aplicar el IVA correspondiente al facturar a tus clientes de cualquier parte del mundo
-                            puedes
-                            usar nuestra herramienta de cálculo del IVA.
-                        </p>
-                        <p>
-                            Introduce la cantidad y el tipo de IVA que quieres aplicar, si quieres incluir o quitar el
-                            IVA a la
-                            cantidad, y la calculadora mostrará el cálculo del IVA y el precio final.
-                        </p>
-                    </div>
-                    <div class="calculator">
-                        <form action="#">
-                            <label for="amount">
-                                Cantidad
-                                <input type="number" id="amount" value="1000">
-                            </label>
-                            <label for="rate">
-                                Tipo de IVA %
-                                <input type="number" id="rate" value="20">
-                            </label>
-
-                            <div class="wrap">
-                                <label class="custom-radio" for="with">
-                                    <input type="radio" id="with" name="price" value="with" checked>
-                                    <span class="radiomark"></span>
-                                    Calcular precio con IVA
-                                </label>
-                                <label class="custom-radio" for="without">
-                                    <input type="radio" id="without" name="price" value="without">
-                                    <span class="radiomark"></span>
-                                    Calcular precio sin IVA
-                                </label>
-                            </div>
-
-                            <div class="wrap">
-                                <span>Cantidad final: <b>200.00¤</b></span>
-                                <span>Importe del IVA: <b>1200.00¤</b></span>
-                            </div>
-
-                        </form>
-                    </div>
-                    <aside>
-                        <img src="assets/images/AD.jpg" alt="ad">
-                    </aside>
+        <!-- <section class="hero">
+            <div class="wrapper changing">
+                <div class="content">
+                    <h1>Calcular <span>IVA</span></h1>
+                    <p>
+                        Para aplicar el IVA correspondiente al facturar a tus clientes de cualquier parte del mundo
+                        puedes
+                        usar nuestra herramienta de cálculo del IVA.
+                    </p>
+                    <p>
+                        Introduce la cantidad y el tipo de IVA que quieres aplicar, si quieres incluir o quitar el
+                        IVA a la
+                        cantidad, y la calculadora mostrará el cálculo del IVA y el precio final.
+                    </p>
                 </div>
-            </section>
-            <section>
-                <div class="wrapper">
-                    <div class="content">
-                        <h2>Cálculo del IVA: sumar el IVA al importe neto.</h2>
-                        <p>Este gráfico muestra visualmente cómo se calcula el precio con IVA incluido.</p>
-                    </div>
-                    <div class="schedule">
-                        123
-                    </div>
+                <div class="calculator">
+                    <form action="#">
+                        <label for="amount">
+                            Cantidad
+                            <input type="number" id="amount" value="1000">
+                        </label>
+                        <label for="rate">
+                            Tipo de IVA %
+                            <input type="number" id="rate" value="20">
+                        </label>
+
+                        <div class="wrap">
+                            <label class="custom-radio" for="with">
+                                <input type="radio" id="with" name="price" value="with" checked>
+                                <span class="radiomark"></span>
+                                Calcular precio con IVA
+                            </label>
+                            <label class="custom-radio" for="without">
+                                <input type="radio" id="without" name="price" value="without">
+                                <span class="radiomark"></span>
+                                Calcular precio sin IVA
+                            </label>
+                        </div>
+
+                        <div class="wrap">
+                            <span>Cantidad final: <b>200.00¤</b></span>
+                            <span>Importe del IVA: <b>1200.00¤</b></span>
+                        </div>
+
+                    </form>
                 </div>
-            </section>
-        </div>
+            </div>
+            <aside>
+                <img src="assets/images/AD.jpg" alt="ad">
+            </aside>
+        </section>
+        <section class="chart ">
+            <div class="wrapper changing">
+                <div class="content">
+                    <h2>Cálculo del IVA: sumar el IVA al importe neto.</h2>
+                    <p>Este gráfico muestra visualmente cómo se calcula el precio con IVA incluido.</p>
+                </div>
+                <div class="schedule">
+                    123
+                </div>
+            </div>
+        </section> -->
 
 
     </main>
-    <aside>
-        aside
-    </aside>
 
     <footer class="footer">
         <div class="wrapper container">
-            <a href="index.html" class="footer__logo logo">
-                <img src="assets/images/footer/logo.svg" alt="logo">
-            </a>
-            <div class="footer__col">
-                <h5 class="title">16 South</h5>
-                <nav class="footer__nav">
-                    <ul class="footer__nav-list">
-                        <li>
-                            <a href="about.html">About </a>
-                        </li>
-                        <li>
-                            <a href="partnership.html">Partnerships </a>
-                        </li>
-                        <li>
-                            <a href="contact.html">Contact </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="footer__col">
-                <h5 class="title">Address</h5>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur,
-                    12345
-                </p>
-            </div>
-            <div class="footer__col">
-                <h5 class="title">Contact</h5>
-                <a href="contact.html">Link to Contact</a>
-            </div>
+            <p class="copy">© 2024 IVA. All Rights Reserved.</p>
+            <nav class="footer__nav">
+                <ul class="footer__nav-list">
+                    <li>
+                        <a href="index.html/#calculator">Calculator </a>
+                    </li>
+                    <li>
+                        <a href="about.html">About </a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact </a>
+                    </li>
+                </ul>
+            </nav>
+            <ul class="footer__nav-list">
+                <a href="">Privacy Policy</a>
+                <a href="">Terms & Conditions </a>
+                <a href="">Cookie</a>
+            </ul>
         </div>
 
     </footer>

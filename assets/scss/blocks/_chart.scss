@@ -1,0 +1,30 @@
+.chart {
+    margin-top: clamp(2.5rem, 1.667rem + 3.7vw, 5rem);
+
+    & .content {
+        width: 42%;
+
+        @include desktop {
+            width: 46%;
+        }
+
+        @include laptop {
+            width: 100%;
+        }
+    }
+
+    & .schedule {
+        width: 52%;
+        height: 470px;
+        border: var(--border);
+        border-radius: var(--border-radius-large);
+
+        @include desktop {
+            width: 50%;
+        }
+
+        @include laptop {
+            width: 100%;
+        }
+    }
+}

@@ -1,6 +1,13 @@
 .hero {
+    margin-top: clamp(2.5rem, 1.667rem + 3.7vw, 5rem);
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+
+    @include laptop {
+        flex-direction: column;
+    }
+
     & .content {
         width: 42%;
 
