@@ -7,6 +7,9 @@ $container: 1440;
     --color-white: #ffffff;
     --color-blue: #2D5AFD;
     --color-gray: #D8E2ED;
+    --color-light-gray: #F1F7FE;
+    --color-tertiary: #59697F;
+
 
     --color-transparent: transparent;
     --color-shadow: rgba(22, 28, 45, 0.05);
@@ -15,7 +18,7 @@ $container: 1440;
     /*border*/
     --border: 2px solid var(--color-gray);
     --border-radius: 16px;
-    --border-radius-small: 10px;
+    --border-radius-small: 8px;
     --border-radius-large: 24px;
     /*border*/
 
@@ -29,8 +32,8 @@ $container: 1440;
     /*body*/
 
     /*button*/
-    --input-height: 64px;
-    --button-height: 46px;
+    --input-height: 56px;
+    --button-height: 56px;
     --icon-button-height: 30px;
 
     --transition-duration: 0.3s;

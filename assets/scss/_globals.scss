@@ -22,8 +22,6 @@ body {
 
 main {
     overflow: hidden;
-    max-width: 1600px;
-    margin: 0 auto;
     flex: 1 0 auto;
 }
 
@@ -36,6 +34,14 @@ aside {
     width: 100%;
     max-width: 300px;
     flex: 0 0 auto;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+
+    & img {
+        object-fit: cover;
+        max-height: 600px;
+
+    }
 
     @include laptop {
         max-width: none;
@@ -75,7 +81,15 @@ h1 {
 
 h2 {
     @include fluid-text(40, 28);
-    font-weight: 700
+    font-weight: 700;
+
+    & span {
+        color: var(--color-blue);
+    }
+}
+
+h1, h2 {
+    margin-bottom: 40px
 }
 
 h3 {
@@ -84,7 +98,7 @@ h3 {
 }
 
 h4 {
-    @include fluid-text(16, 20);
+    @include fluid-text(20, 16);
 }
 
 h5 {
@@ -104,10 +118,12 @@ h5 {
 
 .wrapper {
     @include flex-start;
+    align-items: center;
     gap: 32px clamp(1.25rem, -5.417rem + 10.42vw, 5rem);
 }
 
 .subtitle {
+    display: block;
     font-weight: 800;
     color: var(--color-blue);
     margin-bottom: clamp(1rem, 0.71rem + 1.29vw, 2rem);

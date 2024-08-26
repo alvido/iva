@@ -29,6 +29,7 @@
 
     & .calculator {
         width: 52%;
+        max-width: 600px;
         padding: clamp(1.5rem, 1.167rem + 1.48vw, 2.5rem) clamp(1rem, 0.5rem + 2.22vw, 2.5rem);
         background: url(../images/calculator-bg.png) no-repeat center;
         background-size: cover;
@@ -36,37 +37,48 @@
 
         @include desktop {
             width: 50%;
+            margin: 0 auto;
         }
 
         @include laptop {
             width: 100%;
         }
 
-        & label:where([for="rate"]) {
-            position: relative;
+        & form {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            gap: 32px;
 
-            &::after {
-                content: '%';
-                position: absolute;
-                bottom: 17px;
-                right: 40px;
+            & label {
+                @include fluid-text(20, 16);
+                color: var(--color-white);
+
+                &:where([for="rate"]) {
+                    position: relative;
+
+                    &::after {
+                        content: '%';
+                        position: absolute;
+                        bottom: 17px;
+                        right: 40px;
+                        color: var(--color-black);
+                    }
+                }
+            }
+
+            & input {
+                border: none;
+
+                &:focus-visible {
+                    border: var(--border);
+                    border-color: var(--color-blue);
+                }
+            }
+
+            & .custom-radio {
                 color: var(--color-black);
             }
-        }
-    }
-
-    & .schedule {
-        width: 52%;
-        height: 470px;
-        border: var(--border);
-        border-radius: var(--border-radius-large);
-
-        @include desktop {
-            width: 50%;
-        }
-
-        @include laptop {
-            width: 100%;
         }
     }
 }

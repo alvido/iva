@@ -8,12 +8,14 @@
         width: 100%;
         height: 100vh;
         opacity: 0;
+        visibility: hidden;
         transition: all .3s ease;
 
         &.navigation--active {
             top: 100%;
             opacity: 1;
             z-index: 1;
+            visibility: visible;
             background: rgba(#000, 0.4);
 
         }
