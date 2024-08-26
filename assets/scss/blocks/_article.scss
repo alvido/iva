@@ -17,6 +17,7 @@ article {
     }
 
     & img {
+        width: 100%;
         max-width: 640px;
         margin-bottom: clamp(1.5rem, 1.21rem + 1.29vw, 2.5rem);
         border-radius: var(--border-radius);
@@ -46,11 +47,18 @@ article {
 
         & thead {
             background: var(--color-light-gray);
+            border-bottom: var(--border);
+
 
             & th {
                 padding: 16px 24px;
                 font-weight: 600;
                 border-right: var(--border);
+
+                @include mobile {
+                    padding: 10px;
+                    text-align: center;
+                }
 
                 &:last-child {
                     border: none;
@@ -78,7 +86,7 @@ article {
                 }
 
                 @include mobile {
-                    padding: 16px;
+                    padding: 10px;
                     text-align: center;
                 }
             }

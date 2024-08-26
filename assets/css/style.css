@@ -248,7 +248,7 @@ table {
   --color-shadow: rgba(22, 28, 45, 0.05);
   /*colors*/
   /*border*/
-  --border: 2px solid var(--color-gray);
+  --border: 1px solid var(--color-gray);
   --border-radius: 16px;
   --border-radius-small: 8px;
   --border-radius-large: 24px;
@@ -268,7 +268,7 @@ table {
 }
 
 .container {
-  width: 100vw;
+  width: 100%;
   max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
   margin-inline: auto;
   padding-inline: var(--container-padding-x);
@@ -409,7 +409,7 @@ h2 span {
 }
 
 h1, h2 {
-  margin-bottom: 40px;
+  margin-bottom: clamp(1rem, 0.565rem + 1.94vw, 2.5rem);
 }
 
 h3 {
@@ -678,7 +678,7 @@ form textarea {
   margin: 0;
   outline: none;
   width: 100%;
-  height: 64px;
+  height: var(--input-height);
   padding: 16px;
   font-size: 16px;
   color: var(--color-black);
@@ -726,10 +726,6 @@ form .custom-radio {
   position: relative;
   cursor: pointer;
   color: var(--color-black);
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 32px;
-  text-align: left;
   /* Скрыть стандартный radio button */
   /* Стиль для видимого элемента radio button */
 }
@@ -751,6 +747,12 @@ form .custom-radio .radiomark {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   /* Отображение "галочки" внутри radio button */
+}
+@media (max-width: 767px) {
+  form .custom-radio .radiomark {
+    width: 16px;
+    aspect-ratio: 1;
+  }
 }
 form .custom-radio .radiomark::after {
   content: "";
@@ -1162,11 +1164,21 @@ form .wrap span {
     width: 100%;
   }
 }
+@media (max-width: 767px) {
+  .hero .calculator {
+    border-radius: var(--border-radius);
+  }
+}
 .hero .calculator form {
   margin: 0;
   padding: 0;
   border: 0;
   gap: 32px;
+}
+@media (max-width: 767px) {
+  .hero .calculator form {
+    gap: 24px;
+  }
 }
 .hero .calculator form label {
   font-size: clamp(16px, 1.3888888889vw, 20px);
@@ -1184,6 +1196,12 @@ form .wrap span {
 }
 .hero .calculator form input {
   border: none;
+  height: 64px;
+}
+@media (max-width: 767px) {
+  .hero .calculator form input {
+    height: 40px;
+  }
 }
 .hero .calculator form input:focus-visible {
   border: var(--border);
@@ -1223,24 +1241,30 @@ form .wrap span {
   border-radius: var(--border-radius-large);
   padding: 32px;
 }
-@media (max-width: 1280px) {
-  .schedule .chart {
-    width: 50%;
-  }
-}
-.schedule .chart h2 {
-  text-align: center;
-  margin-bottom: clamp(1.5rem, 1.355rem + 0.65vw, 2rem);
-}
 @media (max-width: 1440px) {
   .schedule .chart {
     width: 50%;
   }
 }
-@media (max-width: 1280px) {
+@media (max-width: 1023px) {
+  .schedule .chart {
+    width: 70%;
+  }
+}
+@media (max-width: 767px) {
+  .schedule .chart {
+    width: 90%;
+    padding: 24px 16px;
+  }
+}
+@media (max-width: 560px) {
   .schedule .chart {
     width: 100%;
   }
+}
+.schedule .chart h2 {
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 1.355rem + 0.65vw, 2rem);
 }
 .schedule .chart .sum {
   padding: 24px;
@@ -1259,6 +1283,7 @@ form .wrap span {
 @media (max-width: 767px) {
   .schedule .chart .sum {
     padding: 16px 12px;
+    margin-top: 24px;
   }
 }
 
@@ -1460,6 +1485,7 @@ article h3, article h4, article h5, article h6 {
   margin-bottom: 16px;
 }
 article img {
+  width: 100%;
   max-width: 640px;
   margin-bottom: clamp(1.5rem, 1.21rem + 1.29vw, 2.5rem);
   border-radius: var(--border-radius);
@@ -1487,11 +1513,18 @@ article table {
 }
 article table thead {
   background: var(--color-light-gray);
+  border-bottom: var(--border);
 }
 article table thead th {
   padding: 16px 24px;
   font-weight: 600;
   border-right: var(--border);
+}
+@media (max-width: 767px) {
+  article table thead th {
+    padding: 10px;
+    text-align: center;
+  }
 }
 article table thead th:last-child {
   border: none;
@@ -1512,7 +1545,7 @@ article table tbody td:last-child {
 }
 @media (max-width: 767px) {
   article table tbody td {
-    padding: 16px;
+    padding: 10px;
     text-align: center;
   }
 }

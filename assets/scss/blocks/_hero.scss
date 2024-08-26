@@ -44,11 +44,19 @@
             width: 100%;
         }
 
+        @include mobile {
+            border-radius: var(--border-radius);
+        }
+
         & form {
             margin: 0;
             padding: 0;
             border: 0;
             gap: 32px;
+
+            @include mobile {
+                gap: 24px;
+            }
 
             & label {
                 @include fluid-text(20, 16);
@@ -69,6 +77,11 @@
 
             & input {
                 border: none;
+                height: 64px;
+
+                @include mobile {
+                    height: 40px;
+                }
 
                 &:focus-visible {
                     border: var(--border);
