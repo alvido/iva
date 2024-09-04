@@ -34,15 +34,45 @@ function calculateReturns() {
   const annualData = [];
 
   annualData.push({
-    amountVAT: amountVAT,
-    finalAmount: finalAmount,
     quantity: totalQuantity,
+    finalAmount: finalAmount,
+    amountVAT: amountVAT,
     rate: rateVAT,
   });
 
-  console.log(annualData);
-
+  render(quantity, finalAmount, amountVAT);
   renderChart(annualData);
+}
+
+function render(quantity, finalAmount, amountVAT) {
+  // Массив с числами для каждого элемента balance
+  const numbers = [quantity, finalAmount, amountVAT];
+
+  // Находим все элементы с классом .balance
+  const balanceElements = document.querySelectorAll(".balance");
+
+  // Перебираем каждый .balance и вставляем соответствующие числа и метки
+  balanceElements.forEach((balanceElement, index) => {
+    const integerElement = balanceElement.querySelector(".balance__integer");
+    const fractionElement = balanceElement.querySelector(".balance__fraction");
+
+    // Получаем число и текстовую метку для текущего .balance
+    const number = numbers[index];
+
+    // Разделение числа на целую и дробную части
+    const integerPart = Math.floor(number); // Целая часть
+    const fractionPart = (number - integerPart).toFixed(2).substring(2); // Дробная часть
+
+    // console.log(quantity, finalAmount, amountVAT);
+
+    // Проверяем, что integerElement и subElement существуют
+    if (integerElement) {
+      integerElement.textContent = integerPart;
+    }
+    if (fractionElement) {
+      fractionElement.textContent = fractionPart;
+    }
+  });
 }
 
 // Функция для отображения графика данных
@@ -168,60 +198,4 @@ function renderChart(data) {
 
   // Вызываем функцию один раз для установки правильных значений при загрузке страницы
   updateChartOptions(returnChartInstance);
-
-  // returnChartInstance = new Chart(ctx, {
-  //   type: "bar",
-  //   data: {
-  //     labels: labels,
-  //     datasets: [
-  //       {
-  //         label: "VAT amount",
-  //         data: amountVAT,
-  //         backgroundColor: "#2D5AFD",
-  //         borderRadius: 16, // Устанавливаем значение по умолчанию
-  //       },
-  //       {
-  //         label: "Quantity",
-  //         data: quantityData,
-  //         backgroundColor: "#4AB3FF",
-  //         borderRadius: 16,
-  //       },
-  //       {
-  //         label: "Final amount",
-  //         data: finalAmountData,
-  //         backgroundColor: "#A3CDFE",
-  //         borderRadius: 16,
-  //       },
-  //     ],
-  //   },
-  //   options: {
-  //     scales: {
-  //       x: {
-  //         beginAtZero: true,
-  //         stacked: false,
-  //       },
-  //       y: {
-  //         stacked: false,
-  //         beginAtZero: true,
-  //       },
-  //     },
-  //     indexAxis: "x",
-  //     responsive: true,
-  //     plugins: {
-  //       legend: {
-  //         position: "right",
-  //       },
-  //       title: {
-  //         display: false,
-  //         text: "Chart.js Horizontal Bar Chart",
-  //       },
-  //     },
-  //   },
-  // });
-
-  // // Обновляем borderRadius при загрузке страницы
-  // updateChartBorderRadius();
-
-  // // Добавляем слушатель события на изменение размера окна
-  // window.addEventListener("resize", updateChartBorderRadius);
 }

@@ -87,8 +87,22 @@
                         </div>
 
                         <div class="wrap">
-                            <span>Cantidad final: <b>200.00¤</b></span>
-                            <span>Importe del IVA: <b>1200.00¤</b></span>
+                            <span>
+                                Cantidad final:
+                                <div class="balance">
+                                    <span class="balance__integer">200</span>.
+                                    <sub class="balance__fraction">07</sub>
+                                    ¤
+                                </div>
+                            </span>
+                            <span>
+                                Importe del IVA:
+                                <div class="balance">
+                                    <span class="balance__integer">1200</span>.
+                                    <sub class="balance__fraction">47</sub>
+                                    ¤
+                                </div>
+                            </span>
                         </div>
 
                     </form>
@@ -110,7 +124,11 @@
                     <canvas id="returnChart"></canvas>
                     <div class="sum">
                         <p>Importe del IVA:</p>
-                        <span>1200.00</span>
+                        <div class="balance">
+                            <span class="balance__integer">1200</span>.
+                            <sub class="balance__fraction">47</sub>
+                            ¤
+                        </div>
                     </div>
                 </div>
             </div>

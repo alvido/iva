@@ -1287,6 +1287,19 @@ form .wrap span {
   }
 }
 
+.balance {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+}
+.balance__fraction {
+  margin-right: 8px;
+}
+
 .page {
   margin-block: clamp(2.5rem, 1.774rem + 3.23vw, 5rem);
 }
@@ -1369,7 +1382,7 @@ form .wrap span {
   display: block;
   width: 120px;
   height: 120px;
-  background: url(/assets/images/about/decor.png) no-repeat center;
+  background: url(../images/about/decor.png) no-repeat center;
   background-size: cover;
 }
 @media (max-width: 1023px) {

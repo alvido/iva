@@ -60,3 +60,13 @@
         }
     }
 }
+
+.balance {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+
+    &__fraction {
+        margin-right: 8px;
+    }
+}
