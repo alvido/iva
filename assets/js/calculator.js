@@ -3,50 +3,126 @@ let returnChartInstance = null; // Инициализация переменно
 // Обработчик события загрузки страницы
 document.addEventListener("DOMContentLoaded", () => {
   // Массив идентификаторов входных элементов
-  const inputs = ["quantity", "rate"];
+  const inputs = ["quantity", "rate", "with", "without"]; // Добавьте идентификаторы радио-кнопок
 
   // Добавляем обработчики событий для каждого входного элемента
   inputs.forEach((id) => {
     const element = document.getElementById(id);
-    if (element.type === "checkbox" || element.tagName === "SELECT") {
-      // Если элемент является чекбоксом или выпадающим списком
-      element.addEventListener("change", calculateReturns); // Добавляем обработчик изменения
-    } else {
-      element.addEventListener("input", calculateReturns); // Добавляем обработчик ввода
+    if (element) { // Проверяем, существует ли элемент
+      if (element.type === "checkbox" || element.tagName === "SELECT" || element.type === "radio") {
+        // Если элемент является чекбоксом, выпадающим списком или радио-кнопкой
+        element.addEventListener("change", () => {
+          validateInput();     // Вызываем validateInput при изменении
+          calculateReturns();  // Добавляем обработчик изменения
+        });
+      } else {
+        element.addEventListener("input", () => {
+          validateInput();     // Вызываем validateInput при вводе
+          calculateReturns();  // Добавляем обработчик ввода
+        });
+      }
     }
   });
 
   calculateReturns(); // Вызываем calculateReturns() при загрузке страницы
 });
 
+
 // Функция для расчета данных
 function calculateReturns() {
   const quantity = parseFloat(document.getElementById("quantity").value);
   const rate = parseFloat(document.getElementById("rate").value) / 100;
+  const selectedRadio = document.querySelector('input[name="price"]:checked')?.value || null;
+
+  console.log("Выбрано: " + selectedRadio); // Выводим выбранное значение в консоль
 
   let totalQuantity = quantity;
   let rateVAT = rate;
 
-  let finalAmount = totalQuantity * rateVAT;
+  let finalAmount = 0;
+  let amountVAT = 0;
 
-  let amountVAT = totalQuantity + finalAmount;
+  if (selectedRadio === 'with') {
+    finalAmount = totalQuantity * rateVAT;
+    amountVAT = totalQuantity + finalAmount;
+
+  } else {
+    finalAmount = totalQuantity * rateVAT / (1 + rateVAT);
+    amountVAT = totalQuantity - finalAmount;
+  }
+
+  console.log(rateVAT);
+  console.log(finalAmount);
+  console.log(amountVAT);
 
   const annualData = [];
 
   annualData.push({
-    quantity: totalQuantity,
     finalAmount: finalAmount,
     amountVAT: amountVAT,
-    rate: rateVAT,
+    quantity: totalQuantity,
   });
 
-  render(quantity, finalAmount, amountVAT);
+  render(finalAmount, amountVAT, amountVAT);
   renderChart(annualData);
+}
+
+function validateInput() {
+  // Получаем все input элементы с типом number
+  const numberInputs = document.querySelectorAll('input[type="number"]');
+
+  // Функция для добавления сообщения об ошибке
+  function showError(input, message) {
+    let errorMessage = input.nextElementSibling;
+    if (!errorMessage) {
+      errorMessage = document.createElement("span");
+      errorMessage.classList.add("error-message");
+      input.parentNode.insertBefore(errorMessage, input.nextSibling);
+    }
+    errorMessage.textContent = message;
+    input.classList.add("error");
+    input.value = '';
+  }
+
+  // Функция для удаления сообщения об ошибке
+  function clearError(input) {
+    const errorMessage = input.nextElementSibling;
+    if (errorMessage) errorMessage.remove();
+    input.classList.remove("error");
+  }
+
+  // Проверка диапазона значений
+  numberInputs.forEach((input) => {
+    const numberValue = input.value;
+    const parsedValue = parseFloat(numberValue);
+    let isValid = false;
+    let errorMessage = "";
+
+    // Проверка на начальный ноль (если число является целым и не равно 0)
+    const startsWithZero = numberValue.length > 1 && numberValue.startsWith('0') && !numberValue.includes('.');
+
+    // Проверка для элемента с id "rate"
+    if (input.id === "rate") {
+      isValid = parsedValue >= 0 && parsedValue <= 100 && !startsWithZero;
+      errorMessage = "El valor sólo puede ser un número del 0 al 100, sin ceros al principio.";
+    } else {
+      // Общая проверка для всех других input[type="number"]
+      isValid = parsedValue >= 0 && parsedValue <= 100000000 && !startsWithZero;
+      errorMessage = "El valor sólo puede ser un número del 0 al 100000000, sin ceros al principio.";
+    }
+
+    // Отображаем или убираем ошибку в зависимости от валидности
+    if (isNaN(parsedValue) || !isValid) {
+      showError(input, errorMessage);
+    } else {
+      clearError(input);
+    }
+  });
 }
 
 function render(quantity, finalAmount, amountVAT) {
   // Массив с числами для каждого элемента balance
-  const numbers = [quantity, finalAmount, amountVAT];
+  const numbers = [quantity || 0, finalAmount || 0, amountVAT || 0];
 
   // Находим все элементы с классом .balance
   const balanceElements = document.querySelectorAll(".balance");
@@ -84,9 +160,10 @@ function renderChart(data) {
   }
 
   const labels = data.map((_, i) => ``);
-  const amountVAT = data.map((d) => d.amountVAT);
-  const finalAmountData = data.map((d) => d.finalAmount);
-  const quantityData = data.map((d) => d.quantity);
+  // Форматируем данные до двух знаков после запятой
+  const amountVAT = data.map((d) => parseFloat(d.amountVAT).toFixed(2));
+  const finalAmountData = data.map((d) => parseFloat(d.finalAmount).toFixed(2));
+  const quantityData = data.map((d) => parseFloat(d.quantity).toFixed(2));
 
   function updateChartBorderRadius() {
     const windowWidth = window.innerWidth;
